@@ -19,7 +19,7 @@ const BACKGROUND_IMAGES = [
 ];
 
 // Placeholder royalty-free romantic music
-const MUSIC_URL = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+const MUSIC_URL = "https://github.com/vinval-291/Kaira/raw/refs/heads/main/the_mountain-inspirational-piano-romantic-375982.mp3";
 
 export default function App() {
   const [password, setPassword] = useState("");
