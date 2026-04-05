@@ -131,7 +131,7 @@ export default function App() {
             
             <h1 className="text-xl md:text-2xl font-serif italic text-gray-800 mb-4">A Quick Note...</h1>
             <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-8">
-              Before proceeding, apologies for the outcome of this bottle. I needed it to be excellent, but those that did it delivered what i ordered vs what i got. had to send it back, and the remedy was to print the QR code the way it is right now. As per excellence, I don't like it, but what there is nothing I can do.
+              Before proceeding, apologies for the outcome of this bottle. I needed it to be excellent, but those that did it delivered what i ordered vs what i got. had to send it back, and the remedy was to print the QR code the way it is right now. As per excellence, I don't like it, but there is nothing I can do.
             </p>
             
             <button
