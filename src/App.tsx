@@ -22,6 +22,7 @@ const BACKGROUND_IMAGES = [
 const MUSIC_URL = "https://github.com/vinval-291/Kaira/raw/refs/heads/main/the_mountain-inspirational-piano-romantic-375982.mp3";
 
 export default function App() {
+  const [showIntro, setShowIntro] = useState(true);
   const [password, setPassword] = useState("");
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [error, setError] = useState(false);
@@ -75,7 +76,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fffafc] flex items-center justify-center p-6 relative overflow-hidden font-sans">
+    <div className="min-h-screen bg-[#fffafc] flex items-center justify-center p-4 md:p-6 relative overflow-hidden font-sans">
       
       {/* Floating Background Elements */}
       <div className="absolute inset-0 pointer-events-none z-1">
@@ -107,29 +108,55 @@ export default function App() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           onClick={() => setIsMuted(!isMuted)}
-          className="absolute top-6 right-6 z-50 p-3 bg-white/50 backdrop-blur-md rounded-full text-pink-500 hover:bg-white/80 transition-all shadow-lg"
+          className="absolute top-4 right-4 md:top-6 md:right-6 z-50 p-2 md:p-3 bg-white/50 backdrop-blur-md rounded-full text-pink-500 hover:bg-white/80 transition-all shadow-lg"
         >
-          {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
+          {isMuted ? <VolumeX size={20} className="md:w-6 md:h-6" /> : <Volume2 size={20} className="md:w-6 md:h-6" />}
         </motion.button>
       )}
 
       <AnimatePresence mode="wait">
-        {!isUnlocked ? (
+        {showIntro ? (
+          <motion.div
+            key="intro-screen"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="w-full max-w-md bg-white/80 backdrop-blur-xl p-6 md:p-8 rounded-[32px] shadow-2xl border border-pink-50 text-center z-10"
+          >
+            <div className="mb-6 flex justify-center">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-pink-50 rounded-full flex items-center justify-center text-pink-500">
+                <Sparkles size={24} className="md:w-8 md:h-8" />
+              </div>
+            </div>
+            
+            <h1 className="text-xl md:text-2xl font-serif italic text-gray-800 mb-4">A Quick Note...</h1>
+            <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-8">
+              Before proceeding, apologies for the outcome of this bottle. I needed it to be excellent, but those that did it delivered what i ordered vs what i got. had to send it back, and the remedy was to print the QR code the way it is right now. As per excellence, I don't like it, but what there is nothing I can do.
+            </p>
+            
+            <button
+              onClick={() => setShowIntro(false)}
+              className="w-full py-3 md:py-4 bg-pink-500 hover:bg-pink-600 text-white rounded-2xl font-semibold shadow-lg shadow-pink-200 transition-all active:scale-95"
+            >
+              Proceed to Surprise
+            </button>
+          </motion.div>
+        ) : !isUnlocked ? (
           <motion.div
             key="lock-screen"
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            className="w-full max-w-md bg-white/80 backdrop-blur-xl p-8 rounded-[32px] shadow-2xl border border-pink-50 text-center z-10"
+            className="w-full max-w-md bg-white/80 backdrop-blur-xl p-6 md:p-8 rounded-[32px] shadow-2xl border border-pink-50 text-center z-10"
           >
             <div className="mb-6 flex justify-center">
-              <div className="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center text-pink-500">
-                <Lock size={32} />
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-pink-50 rounded-full flex items-center justify-center text-pink-500">
+                <Lock size={24} className="md:w-8 md:h-8" />
               </div>
             </div>
             
-            <h1 className="text-3xl font-serif italic text-gray-800 mb-2">A little surprise awaits ✨</h1>
-            <p className="text-gray-500 mb-8">Enter the special word to unlock your birthday note</p>
+            <h1 className="text-2xl md:text-3xl font-serif italic text-gray-800 mb-2">A little surprise awaits ✨</h1>
+            <p className="text-gray-500 text-sm md:text-base mb-8">Enter the special word to unlock your birthday note</p>
             
             <div className="space-y-4">
               <input
@@ -138,14 +165,14 @@ export default function App() {
                 onChange={(e) => setPassword(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleUnlock()}
                 placeholder="Enter password"
-                className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-pink-100 transition-all text-center text-lg placeholder:text-gray-300"
+                className="w-full px-4 py-3 md:px-6 md:py-4 bg-white border border-gray-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-pink-100 transition-all text-center text-base md:text-lg placeholder:text-gray-300"
               />
               
               <button
                 onClick={handleUnlock}
-                className="w-full py-4 bg-pink-500 hover:bg-pink-600 text-white rounded-2xl font-semibold shadow-lg shadow-pink-200 transition-all active:scale-95 flex items-center justify-center gap-2"
+                className="w-full py-3 md:py-4 bg-pink-500 hover:bg-pink-600 text-white rounded-2xl font-semibold shadow-lg shadow-pink-200 transition-all active:scale-95 flex items-center justify-center gap-2"
               >
-                <Unlock size={20} />
+                <Unlock size={18} className="md:w-5 md:h-5" />
                 Unlock
               </button>
 
@@ -153,7 +180,7 @@ export default function App() {
                 <motion.p
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="text-pink-500 text-sm font-medium"
+                  className="text-pink-500 text-xs md:text-sm font-medium"
                 >
                   That’s not quite it 💕
                 </motion.p>
@@ -165,7 +192,7 @@ export default function App() {
             key="message-screen"
             initial={{ opacity: 0, y: 40, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            className="w-full max-w-2xl bg-white rounded-[40px] shadow-2xl border border-pink-50 text-center z-10 relative overflow-hidden"
+            className="w-full max-w-2xl bg-white rounded-[32px] md:rounded-[40px] shadow-2xl border border-pink-50 text-center z-10 relative overflow-hidden"
           >
             {/* Background Slideshow inside the card */}
             <div className="absolute inset-0 z-0">
@@ -190,30 +217,30 @@ export default function App() {
               <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/40 to-white/80" />
             </div>
 
-            <div className="relative z-10 p-10 md:p-16">
+            <div className="relative z-10 p-6 md:p-16">
               {/* Decorative Crown for the Productivity Queen */}
               <motion.div 
                 initial={{ rotate: -10, scale: 0 }}
                 animate={{ rotate: 0, scale: 1 }}
                 transition={{ type: "spring", delay: 0.5 }}
-                className="absolute top-8 right-8 text-yellow-400/30"
+                className="absolute top-4 right-4 md:top-8 md:right-8 text-yellow-400/30"
               >
-                <Crown size={64} />
+                <Crown size={48} className="md:w-16 md:h-16" />
               </motion.div>
 
-              <div className="mb-8 flex justify-center">
+              <div className="mb-6 md:mb-8 flex justify-center">
                 <motion.div
                   animate={{ scale: [1, 1.1, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                   className="text-pink-500"
                 >
-                  <Heart size={48} fill="currentColor" />
+                  <Heart size={36} className="md:w-12 md:h-12" fill="currentColor" />
                 </motion.div>
               </div>
 
-              <h2 className="text-4xl md:text-5xl font-serif italic text-gray-900 mb-8">Happy Belated Birthday ✨</h2>
+              <h2 className="text-2xl md:text-5xl font-serif italic text-gray-900 mb-6 md:mb-8">Happy Belated Birthday ✨</h2>
               
-              <div className="space-y-6 text-lg leading-relaxed text-gray-800 font-medium">
+              <div className="space-y-4 md:space-y-6 text-sm md:text-lg leading-relaxed text-gray-800 font-medium">
                 <p>
                   If you’re reading this, then my little design worked 😄
                   <br /> I just wanted to leave a tiny reminder that someone thinks you’re amazing.
@@ -233,9 +260,9 @@ export default function App() {
                 </p>
               </div>
 
-              <div className="mt-12 pt-8 border-t border-pink-100">
-                <div className="text-gray-500 italic mb-2">— from someone who truly admires your light</div>
-                <div className="text-pink-600 font-serif font-semibold text-xl">
+              <div className="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-pink-100">
+                <div className="text-gray-500 text-xs md:text-base italic mb-2">— from someone who truly admires your light</div>
+                <div className="text-pink-600 font-serif font-semibold text-lg md:text-xl">
                   <br /> Happy Birthday once again to you KAIRA. 
                   <br /> The Productivity Queen
                 </div>
