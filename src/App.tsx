@@ -138,7 +138,7 @@ export default function App() {
               onClick={() => setShowIntro(false)}
               className="w-full py-3 md:py-4 bg-pink-500 hover:bg-pink-600 text-white rounded-2xl font-semibold shadow-lg shadow-pink-200 transition-all active:scale-95"
             >
-              Proceed to Surprise
+              Click to Open
             </button>
           </motion.div>
         ) : !isUnlocked ? (
@@ -243,7 +243,7 @@ export default function App() {
               <div className="space-y-4 md:space-y-6 text-sm md:text-lg leading-relaxed text-gray-800 font-medium">
                 <p>
                   If you’re reading this, then my little design worked 😄
-                  <br /> I just wanted to leave a tiny reminder that someone thinks you’re amazing.
+                  <br> I just wanted to leave a tiny reminder that someone thinks you’re amazing.
                 </p>
                 <p>
                   Not every beautiful thing needs to be said out loud immediately.
@@ -263,7 +263,7 @@ export default function App() {
               <div className="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-pink-100">
                 <div className="text-gray-500 text-xs md:text-base italic mb-2">— from someone who truly admires your light</div>
                 <div className="text-pink-600 font-serif font-semibold text-lg md:text-xl">
-                  <br /> Happy Birthday once again to you KAIRA. 
+                  <br /> Happy Belated Birthday once again. 
                   <br /> The Productivity Queen
                 </div>
               </div>
